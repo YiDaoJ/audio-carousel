@@ -135,15 +135,3 @@
   color: #000;
 
 }
-
-
-
-/* if(!this.paused) {
-  console.log('pause')
-  audioElement.pause()
-  $('.card.slick-slide.slick-current.slick-active.slick-center .audio-controll-icon').replaceWith('<i class="far fa-play-circle audio-controll-icon"></i>');
-} else {
-  console.log('start')
-  audioElement.play()
-  $('.card.slick-slide.slick-current.slick-active.slick-center .audio-controll-icon').replaceWith('<i class="far fa-pause-circle audio-controll-icon"></i>');
-} */

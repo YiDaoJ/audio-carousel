@@ -15,24 +15,26 @@
       <div id="audio_carousel">
         <div id="carousel_container">
 
-            <!-- card -->
+            <!-- 5 cards for audioplayer -->
             <div class="card">
+                <!-- card top: background image -->
                 <div class="audio-background-image card-img-top">
-                    <!-- <img class="audio-icon" alt="Start Icon" src="assets/icons/speaker.svg" /> -->
                 </div>
 
+                <!-- card body -->
                 <div class="card-body">
 
+                  <!-- description and title -->
                   <div class="audio-description">
                       <h5 class="card-title">Station 1</h5>
                       <p class="card-text">Title</p>
                   </div>
 
-                  <!-- <audio class="audio_with_controls" type="audio/mp3">
-                  </audio> -->
+                  <!-- progress bar -->
                   <div class="progress">
                       <div class="progress-filled"></div>
                   </div>
+                  <!-- start and pause button -->
                   <div class="audio-controller">
                     <div class="audio-controll-btns">
                       <div class="audio-toggle-btn">
@@ -46,7 +48,6 @@
 
             <div class="card">
                 <div class="audio-background-image card-img-top">
-                    <!-- <img class="audio-icon" alt="Start Icon" src="assets/icons/speaker.svg" /> -->
                 </div>
 
                 <div class="card-body">
@@ -56,9 +57,6 @@
                       <p class="card-text">Title</p>
                   </div>
 
-                  <!-- <audio class="audio_with_controls" type="audio/mp3">
-                  </audio> -->
-
                   <div class="progress">
                       <div class="progress-filled"></div>
                   </div>
@@ -75,7 +73,6 @@
 
             <div class="card">
                 <div class="audio-background-image card-img-top">
-                    <!-- <img class="audio-icon" alt="Start Icon" src="assets/icons/speaker.svg" /> -->
                 </div>
 
                 <div class="card-body">
@@ -84,9 +81,6 @@
                       <h5 class="card-title">Station 3</h5>
                       <p class="card-text">Title</p>
                   </div>
-
-                  <!-- <audio class="audio_with_controls" type="audio/mp3">
-                  </audio> -->
                   <div class="progress">
                       <div class="progress-filled"></div>
                   </div>
@@ -103,7 +97,6 @@
 
             <div class="card">
                 <div class="audio-background-image card-img-top">
-                    <!-- <img class="audio-icon" alt="Start Icon" src="assets/icons/speaker.svg" /> -->
                 </div>
 
                 <div class="card-body">
@@ -113,8 +106,6 @@
                     <p class="card-text">Title</p>
                   </div>
 
-                  <!-- <audio class="audio_with_controls" type="audio/mp3">
-                  </audio> -->
                   <div class="progress">
                       <div class="progress-filled"></div>
                   </div>
@@ -131,7 +122,6 @@
 
             <div class="card">
                 <div class="audio-background-image card-img-top">
-                    <!-- <img class="audio-icon" alt="Start Icon" src="assets/icons/speaker.svg" /> -->
                 </div>
 
                 <div class="card-body">
@@ -141,8 +131,6 @@
                       <p class="card-text">Title</p>
                   </div>
 
-                  <!-- <audio class="audio_with_controls" type="audio/mp3">
-                  </audio> -->
                   <div class="progress">
                       <div class="progress-filled"></div>
                   </div>
@@ -168,6 +156,9 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
+
+      // setting for plugin: slick
+      // http://kenwheeler.github.io/slick/
       $('#carousel_container').slick({
         arrows: true,
         centerMode: true,
@@ -197,6 +188,8 @@
         // ]
       });
 
+
+        // array for audio-src
         var audioSrc = ['https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1',
                       'http://alexkatz.me/codepen/music/interlude.mp3',
                       'https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/Swing_Jazz_Drum.mp3',
@@ -204,19 +197,25 @@
                       'http://alexkatz.me/codepen/music/interlude.mp3',
                       'https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1']
         var audioIndex = 0
+
+        // get the DOM-Element of description and insert a audio tag after description
         var description = $('.card.slick-slide.slick-current.slick-active.slick-center .audio-description')
         description.after('<audio class="audio_with_controls" type="audio/mp3"></audio>')
 
+        // get the DOM-Element of audio in current center card in carousel
         var audioElement = $('.card.slick-slide.slick-current.slick-active.slick-center .audio_with_controls')
+        // set the first index bzw. src-address to src-attribut of audio
         audioElement.attr({src: audioSrc[audioIndex]})
 
-
+        // get the DOM-Element of current center card in carousel
         var aktCard = $('.card.slick-slide.slick-current.slick-active.slick-center')
+        // get the start buttton in current center card
         var btnInAktCard = $('.card.slick-slide.slick-current.slick-active.slick-center .audio-toggle-btn')
+
         aktCard.addClass('initial-click')
         var btnInAktCardBeforeInitialClick = $('.initial-click .audio-toggle-btn')
 
-
+        // button for next
         var nextBtn = $('.slick-next')
 
       $(document).ready(() => {
@@ -225,14 +224,18 @@
           aktCard.removeClass('initial-click')
           btnInAktCardBeforeInitialClick.removeClass('initial-click')
           btnInAktCardBeforeInitialClick = $('.initial-click')
+
+          // remove the src value of last played audio
           audioElement.removeAttr("src")
 
+          // get new audio index
           if(audioIndex < audioSrc.length-1) {
             audioIndex = audioIndex + 1;
           } else {
             audioIndex = 0;
           }
 
+          // update current card and button
           aktCard = $('.card.slick-slide.slick-current.slick-active.slick-center')
           btnInAktCard = $('.card.slick-slide.slick-current.slick-active.slick-center .audio-toggle-btn')
           audioElement.attr({src: audioSrc[audioIndex]})
@@ -257,15 +260,20 @@
 
         })
 
+
         btnInAktCardBeforeInitialClick.click(() => {
           // console.log(btnInAktCardBeforeInitialClick.length)
           if(btnInAktCardBeforeInitialClick.length !== 0)
             audio_toggle_play(audioElement[0])
         })
 
+        /**
+        * Funktion to controll start and pause of audio
+        */
         function audio_toggle_play(audioElement) {
           if(audioElement.paused) {
             audioElement.play()
+            // change icon
             $('.card.slick-slide.slick-current.slick-active.slick-center .audio-controll-icon').replaceWith('<i class="far fa-pause-circle audio-controll-icon"></i>');
           } else {
             audioElement.pause()
